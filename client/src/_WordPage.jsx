@@ -1,5 +1,20 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 class WordPage extends Component {
+  saveWord = async () => {
+    axios.post('/word_item', {
+      word: this.props.word,
+      definition: this.props.wordDefinition
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+
   render() {
     return (
         <div>
@@ -17,6 +32,12 @@ class WordPage extends Component {
               className="button not-worthy"
             >
               Word Not Game Worthy
+            </button>
+            <button
+              onClick={this.saveWord}
+              className="button save-word"
+            >
+              Save Word
             </button>
           </div>
         </div>
